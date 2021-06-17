@@ -1,12 +1,11 @@
 
 public class Patient {
 
-	String email, phone, name, gender, password;
+	String email, name, gender, password;
 	int age;
 
-	public Patient(String email, String phone, String name, String gender, int age, String password) {
+	public Patient(String email, String name, String gender, int age, String password) {
 		this.email = email;
-		this.phone = phone;
 		this.name = name;
 		this.gender = gender;
 		this.age = age;
@@ -19,14 +18,6 @@ public class Patient {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
 	}
 
 	public String getName() {
