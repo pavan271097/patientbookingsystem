@@ -71,7 +71,7 @@ public class SystemHome extends JFrame {
 		Image img = new ImageIcon(this.getClass().getResource("/logo.png")).getImage();
 		lblNewLabel_1.setIcon(new ImageIcon(img));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setBounds(123, 0, 100, 100);
+		lblNewLabel_1.setBounds(103, 0, 100, 100);
 		panel.add(lblNewLabel_1);
 		
 		JButton btnNewButton = new JButton("Login");
@@ -79,7 +79,7 @@ public class SystemHome extends JFrame {
 		panel.add(btnNewButton);
 		
 		JButton btnPatientSignUp = new JButton("Patient Sign Up");
-		btnPatientSignUp.setBounds(110, 281, 124, 35);
+		btnPatientSignUp.setBounds(90, 281, 124, 35);
 		panel.add(btnPatientSignUp);
 		
 		textField = new JTextField();
@@ -110,45 +110,45 @@ public class SystemHome extends JFrame {
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
-		textField_1.setBounds(71, 111, 198, 20);
+		textField_1.setBounds(51, 111, 198, 20);
 		panel.add(textField_1);
 		
 		JLabel lblNewLabel_2_2 = new JLabel("Enter Email ID");
-		lblNewLabel_2_2.setBounds(71, 95, 152, 14);
+		lblNewLabel_2_2.setBounds(51, 95, 152, 14);
 		panel.add(lblNewLabel_2_2);
 		
 		textField_2 = new JTextField();
 		textField_2.setColumns(10);
-		textField_2.setBounds(71, 153, 198, 20);
+		textField_2.setBounds(51, 153, 198, 20);
 		panel.add(textField_2);
 		
 		JLabel lblNewLabel_2_2_1 = new JLabel("Enter Full Name");
-		lblNewLabel_2_2_1.setBounds(71, 137, 152, 14);
+		lblNewLabel_2_2_1.setBounds(51, 137, 152, 14);
 		panel.add(lblNewLabel_2_2_1);
 		
 		JLabel lblNewLabel_2_2_2 = new JLabel("Enter Age");
-		lblNewLabel_2_2_2.setBounds(71, 184, 86, 14);
+		lblNewLabel_2_2_2.setBounds(51, 184, 86, 14);
 		panel.add(lblNewLabel_2_2_2);
 		
 		JLabel lblNewLabel_2_2_3 = new JLabel("Enter Password");
-		lblNewLabel_2_2_3.setBounds(71, 230, 152, 14);
+		lblNewLabel_2_2_3.setBounds(51, 230, 152, 14);
 		panel.add(lblNewLabel_2_2_3);
 		
 		JSpinner spinner = new JSpinner();
-		spinner.setBounds(71, 199, 86, 20);
+		spinner.setBounds(51, 199, 86, 20);
 		panel.add(spinner);
 		
 		JLabel lblNewLabel_2_2_2_1 = new JLabel("Enter Gender");
-		lblNewLabel_2_2_2_1.setBounds(183, 184, 86, 14);
+		lblNewLabel_2_2_2_1.setBounds(163, 184, 86, 14);
 		panel.add(lblNewLabel_2_2_2_1);
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Male", "Female", "Other"}));
-		comboBox.setBounds(183, 199, 86, 20);
+		comboBox.setBounds(163, 199, 86, 20);
 		panel.add(comboBox);
 		
 		passwordField_1 = new JPasswordField();
-		passwordField_1.setBounds(71, 245, 198, 20);
+		passwordField_1.setBounds(51, 245, 198, 20);
 		panel.add(passwordField_1);
 		
 		JButton btnNewButton_1 = new JButton("Quit");
