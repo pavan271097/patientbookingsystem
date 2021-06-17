@@ -6,9 +6,10 @@ public class Storage {
 	public static ArrayList<Doctor> doctors = new ArrayList<>();
 	public static ArrayList<Slot> slots = new ArrayList<>();
 	public static ArrayList<Appointment> appointments = new ArrayList<>();
-	
+
 	public static void initiateData() {
-		if(slots.size()==0) {
+		if(slots.size()==0) {	
+			
 			slots.add(new Slot(1,"10:00"));
 			slots.add(new Slot(2,"11:00"));
 			slots.add(new Slot(3,"12:00"));
@@ -31,5 +32,4 @@ public class Storage {
 			
 		}
 	}
-	
 }

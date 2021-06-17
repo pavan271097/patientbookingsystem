@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.Image;
@@ -18,16 +19,18 @@ import java.awt.SystemColor;
 import javax.swing.JSpinner;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class SystemHome extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JPasswordField passwordField;
+	private JTextField emailLog;
+	private JPasswordField passLog;
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JPasswordField passwordField_1;
-
+	static SystemHome frame;
 	/**
 	 * Launch the application.
 	 */
@@ -35,7 +38,8 @@ public class SystemHome extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					SystemHome frame = new SystemHome();
+					Storage.initiateData();
+					frame = new SystemHome();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -75,6 +79,26 @@ public class SystemHome extends JFrame {
 		panel.add(lblNewLabel_1);
 		
 		JButton btnNewButton = new JButton("Login");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String email = emailLog.getText().toString();
+				String password = passLog.getText().toString();
+				boolean flag=false;
+				for(Patient p: Storage.patients) {
+					if(email.equalsIgnoreCase(p.getEmail()) && password.equalsIgnoreCase(p.getPassword())){
+						JOptionPane.showMessageDialog(null, "Login Successful","Info", JOptionPane.INFORMATION_MESSAGE);
+						frame.setVisible(false);
+						PatientPortal newFrame = new PatientPortal();
+						newFrame.main(null);
+						flag=true;
+						break;
+					}
+				}
+				if(!flag)	
+					JOptionPane.showMessageDialog(null, "Invalid Credentials","Info", JOptionPane.INFORMATION_MESSAGE);
+				
+			}
+		});
 		btnNewButton.setBounds(396, 230, 124, 35);
 		panel.add(btnNewButton);
 		
@@ -82,10 +106,10 @@ public class SystemHome extends JFrame {
 		btnPatientSignUp.setBounds(90, 281, 124, 35);
 		panel.add(btnPatientSignUp);
 		
-		textField = new JTextField();
-		textField.setBounds(355, 120, 198, 20);
-		panel.add(textField);
-		textField.setColumns(10);
+		emailLog = new JTextField();
+		emailLog.setBounds(355, 120, 198, 20);
+		panel.add(emailLog);
+		emailLog.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("Enter Email ID");
 		lblNewLabel_2.setBounds(355, 95, 152, 14);
@@ -95,13 +119,13 @@ public class SystemHome extends JFrame {
 		lblNewLabel_2_1.setBounds(355, 159, 134, 14);
 		panel.add(lblNewLabel_2_1);
 		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(355, 184, 198, 20);
-		panel.add(passwordField);
+		passLog = new JPasswordField();
+		passLog.setBounds(355, 184, 198, 20);
+		panel.add(passLog);
 		
 		JLabel lblNewLabel_3 = new JLabel("Patient Login");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel_3.setBounds(399, 42, 108, 20);
+		lblNewLabel_3.setBounds(399, 42, 108, 29);
 		panel.add(lblNewLabel_3);
 		
 		JPanel panel_1 = new JPanel();
@@ -152,6 +176,14 @@ public class SystemHome extends JFrame {
 		panel.add(passwordField_1);
 		
 		JButton btnNewButton_1 = new JButton("Quit");
+		
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.exit(0);
+			}
+		});
+		
+		
 		btnNewButton_1.setBounds(527, 17, 89, 23);
 		contentPane.add(btnNewButton_1);
 	}
