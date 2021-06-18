@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -16,20 +17,23 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import java.awt.SystemColor;
+import java.awt.Toolkit;
+
 import javax.swing.JSpinner;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.SpinnerNumberModel;
 
 public class SystemHome extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField emailLog;
 	private JPasswordField passLog;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JPasswordField passwordField_1;
+	private JTextField emailT;
+	private JTextField nameT;
+	private JPasswordField passT;
 	static SystemHome frame;
 	/**
 	 * Launch the application.
@@ -52,6 +56,10 @@ public class SystemHome extends JFrame {
 	 * Create the frame.
 	 */
 	public SystemHome() {
+		
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 642, 440);
 		contentPane = new JPanel();
@@ -104,11 +112,15 @@ public class SystemHome extends JFrame {
 		panel.add(btnNewButton);
 		
 		JButton btnPatientSignUp = new JButton("Patient Sign Up");
+		
 		btnPatientSignUp.setBounds(90, 281, 124, 35);
 		panel.add(btnPatientSignUp);
 		
 		emailLog = new JTextField();
-		emailLog.setText("sx1@mail.com"); //testing
+		
+		//testing
+//		emailLog.setText("sx1@mail.com"); 
+		
 		emailLog.setBounds(355, 120, 198, 20);
 		panel.add(emailLog);
 		emailLog.setColumns(10);
@@ -134,19 +146,19 @@ public class SystemHome extends JFrame {
 		panel_1.setBounds(304, 11, 292, 316);
 		panel.add(panel_1);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(51, 111, 198, 20);
-		panel.add(textField_1);
+		emailT = new JTextField();
+		emailT.setColumns(10);
+		emailT.setBounds(51, 111, 198, 20);
+		panel.add(emailT);
 		
 		JLabel lblNewLabel_2_2 = new JLabel("Enter Email ID");
 		lblNewLabel_2_2.setBounds(51, 95, 152, 14);
 		panel.add(lblNewLabel_2_2);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(51, 153, 198, 20);
-		panel.add(textField_2);
+		nameT = new JTextField();
+		nameT.setColumns(10);
+		nameT.setBounds(51, 153, 198, 20);
+		panel.add(nameT);
 		
 		JLabel lblNewLabel_2_2_1 = new JLabel("Enter Full Name");
 		lblNewLabel_2_2_1.setBounds(51, 137, 152, 14);
@@ -160,22 +172,42 @@ public class SystemHome extends JFrame {
 		lblNewLabel_2_2_3.setBounds(51, 230, 152, 14);
 		panel.add(lblNewLabel_2_2_3);
 		
-		JSpinner spinner = new JSpinner();
-		spinner.setBounds(51, 199, 86, 20);
-		panel.add(spinner);
+		JSpinner ageT = new JSpinner();
+		ageT.setModel(new SpinnerNumberModel(1, 1, 120, 1));
+		ageT.setBounds(51, 199, 86, 20);
+		panel.add(ageT);
 		
 		JLabel lblNewLabel_2_2_2_1 = new JLabel("Enter Gender");
 		lblNewLabel_2_2_2_1.setBounds(163, 184, 86, 14);
 		panel.add(lblNewLabel_2_2_2_1);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Male", "Female", "Other"}));
-		comboBox.setBounds(163, 199, 86, 20);
-		panel.add(comboBox);
+		JComboBox genderT = new JComboBox();
+		genderT.setModel(new DefaultComboBoxModel(new String[] {"Male", "Female", "Other"}));
+		genderT.setBounds(163, 199, 86, 20);
+		panel.add(genderT);
 		
-		passwordField_1 = new JPasswordField();
-		passwordField_1.setBounds(51, 245, 198, 20);
-		panel.add(passwordField_1);
+		passT = new JPasswordField();
+		passT.setBounds(51, 245, 198, 20);
+		panel.add(passT);
+		
+		
+		btnPatientSignUp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String email = emailT.getText();
+				String name = nameT.getText();
+				String gender = genderT.getSelectedItem().toString();
+				String password = passT.getText();
+				int age = Integer.parseInt(ageT.getValue().toString());
+				
+				Storage.patients.add(new Patient(email,name,gender,age,password));
+				
+				JOptionPane.showMessageDialog(null, "Account Succesfully Created","Info", JOptionPane.INFORMATION_MESSAGE);
+				frame.setVisible(false);
+				SystemHome newFrame = new SystemHome();
+				newFrame.main(null);
+				
+			}
+		});
 		
 		JButton btnNewButton_1 = new JButton("Quit");
 		

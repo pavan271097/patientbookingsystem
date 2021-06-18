@@ -24,7 +24,7 @@ public class Appointment {
 		
 		dtf = DateTimeFormatter.ofPattern("ddMMyyHHmmss");  
 		appoinementID = "APPO-"+dtf.format(now);
-		System.out.print(appoinementID);
+		System.out.println("New Appointment ID: "+appoinementID);
 		status = "Booked";
 		doctorFeedback = "Not processed yet";
 	}

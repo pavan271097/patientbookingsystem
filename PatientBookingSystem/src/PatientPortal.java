@@ -17,10 +17,13 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
+import java.awt.Toolkit;
+
 import javax.swing.JComboBox;
 import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
+import java.awt.Dimension;
 
 public class PatientPortal extends JFrame {
 
@@ -51,6 +54,10 @@ public class PatientPortal extends JFrame {
 	 * Create the frame.
 	 */
 	public PatientPortal() {
+		
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 784, 424);
 		contentPane = new JPanel();
@@ -75,7 +82,7 @@ public class PatientPortal extends JFrame {
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(SystemColor.activeCaption);
-		panel.setBounds(10, 52, 748, 422);
+		panel.setBounds(10, 52, 748, 322);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
@@ -99,7 +106,7 @@ public class PatientPortal extends JFrame {
 		panel.add(btnNewButton);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(10, 130, 728, 186);
+		panel_1.setBounds(10, 130, 728, 181);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -144,6 +151,13 @@ public class PatientPortal extends JFrame {
 		contentPane.add(lblNewLabel_3);
 		
 		JButton btnNewButton_1_1_1 = new JButton("Manage Appointments");
+		btnNewButton_1_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				ManageBookings newFrame = new ManageBookings();
+				newFrame.main(null);
+			}
+		});
 		btnNewButton_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		btnNewButton_1_1_1.setBounds(155, 17, 135, 23);
 		contentPane.add(btnNewButton_1_1_1);
@@ -214,10 +228,11 @@ public class PatientPortal extends JFrame {
 						}
 					}
 					Storage.appointments.add(new Appointment(Storage.currentUser,dtemp,date,slottemp));
-					JOptionPane.showMessageDialog(null, "Appointment Successfully booked","Info", JOptionPane.INFORMATION_MESSAGE);
-					DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");  
-					LocalDateTime now = LocalDateTime.now(); 
+					JOptionPane.showMessageDialog(null, "Appointment Successfully booked","Info", JOptionPane.INFORMATION_MESSAGE); 
 					
+					frame.setVisible(false);
+					ManageBookings newFrame = new ManageBookings();
+					newFrame.main(null);
 					
 				}
 			});
