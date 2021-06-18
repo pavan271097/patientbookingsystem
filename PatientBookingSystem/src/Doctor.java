@@ -40,6 +40,13 @@ public class Doctor {
 	public void setRate(double rate) {
 		this.rate = rate;
 	}
+	@Override
+	public String toString() {
+		return "<html><p>Doctor ID: " + id + "<br>Name: " + name + "<br>Expertise: " + expertise + "<br>Gender: " + gender + "<br>Rate: $"
+				+ rate + "</p>";
+	}
+	
+	
 	
 	
 }

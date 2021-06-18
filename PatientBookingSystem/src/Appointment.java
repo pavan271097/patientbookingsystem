@@ -1,19 +1,44 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class Appointment {
 
+	String appoinementID;
 	Patient patient;
 	Doctor doctor;
 	Slot slot;
-	Date date;
+	String date;
+	String bookedDate;
 	String status, doctorFeedback;
-	public Appointment(Patient patient, Doctor doctor, Date date, Slot slot) {
+	public Appointment(Patient patient, Doctor doctor, String date, Slot slot) {
 		this.patient = patient;
 		this.doctor = doctor;
 		this.date = date;
 		this.slot = slot;
+		
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");  
+		LocalDateTime now = LocalDateTime.now();  
+		
+		bookedDate=dtf.format(now);
+		
+		dtf = DateTimeFormatter.ofPattern("ddMMyyHHmmss");  
+		appoinementID = "APPO-"+dtf.format(now);
+		System.out.print(appoinementID);
 		status = "Booked";
 		doctorFeedback = "Not processed yet";
+	}
+	public String getAppoinementID() {
+		return appoinementID;
+	}
+	public void setAppoinementID(String appoinementID) {
+		this.appoinementID = appoinementID;
+	}
+	public String getBookedDate() {
+		return bookedDate;
+	}
+	public void setBookedDate(String bookedDate) {
+		this.bookedDate = bookedDate;
 	}
 	public Patient getPatient() {
 		return patient;
@@ -27,10 +52,10 @@ public class Appointment {
 	public void setDoctor(Doctor doctor) {
 		this.doctor = doctor;
 	}
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 	public Slot getSlot() {

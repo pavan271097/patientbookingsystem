@@ -87,6 +87,7 @@ public class SystemHome extends JFrame {
 				for(Patient p: Storage.patients) {
 					if(email.equalsIgnoreCase(p.getEmail()) && password.equalsIgnoreCase(p.getPassword())){
 						JOptionPane.showMessageDialog(null, "Login Successful","Info", JOptionPane.INFORMATION_MESSAGE);
+						Storage.currentUser=p;
 						frame.setVisible(false);
 						PatientPortal newFrame = new PatientPortal();
 						newFrame.main(null);
@@ -107,6 +108,7 @@ public class SystemHome extends JFrame {
 		panel.add(btnPatientSignUp);
 		
 		emailLog = new JTextField();
+		emailLog.setText("sx1@mail.com"); //testing
 		emailLog.setBounds(355, 120, 198, 20);
 		panel.add(emailLog);
 		emailLog.setColumns(10);

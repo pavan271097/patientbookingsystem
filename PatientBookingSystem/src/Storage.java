@@ -6,6 +6,7 @@ public class Storage {
 	public static ArrayList<Doctor> doctors = new ArrayList<>();
 	public static ArrayList<Slot> slots = new ArrayList<>();
 	public static ArrayList<Appointment> appointments = new ArrayList<>();
+	public static Patient currentUser = null;
 
 	public static void initiateData() {
 		if(slots.size()==0) {	
